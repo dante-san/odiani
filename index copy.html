@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        /*background: linear-gradient(45deg, rgb(231, 68, 144), rgb(121, 42, 224));*/
+        background-image: url("/bg-2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+      }
+
+      .logo {
+        font-family: "Noto Sans Oriya", "Poppins", sans-serif;
+        cursor: pointer;
+      }
+
+      .nav {
+        position: relative;
+        padding-bottom: 0.25rem;
+        text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.55);
+      }
+      .nav::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.8);
+        transition: width 0.3s ease;
+      }
+      .nav:hover::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body class="relative overflow-hidden">
+    <!-- Header -->
+    <header class="relative z-10 flex justify-around items-center h-16 text-white">
+      <div class="logo text-2xl font-bold tracking-widest uppercase [text-shadow:0_4px_12px_rgba(0,0,0,0.35)]">
+        ଓଡ଼ିଆଣି.
+      </div>
+
+      <ul class="flex gap-6 text-sm font-medium tracking-wide">
+        <li><a href="#" class="nav">About</a></li>
+        <li><a href="#" class="nav">Menu</a></li>
+        <li><a href="#" class="nav">Reviews</a></li>
+        <li><a href="#" class="nav">Careers</a></li>
+        <li><a href="#" class="nav">Contact</a></li>
+      </ul>
+    </header>
+
+    <!-- Main -->
+    <main class="relative z-10 flex flex-col justify-center items-center h-[calc(100dvh-4rem)] gap-3 text-white">
+      <h1 class="text-7xl text-center font-bold tracking-wide text-white [text-shadow:0_4px_12px_rgba(0,0,0,0.35)]">
+        Pure Authentic Odia Food
+      </h1>
+      <p class="opacity-90 text-xl italic font-bold [text-shadow:0_4px_12px_rgba(0,0,0,0.90)]">
+        Taste the nostalgia from the heart of Odisha.
+      </p>
+
+      <button
+        class="mt-4 h-12 w-38 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:w-40 transition-all duration-200 uppercase font-bold tracking-wider hover:tracking-widest cursor-pointer [text-shadow:0_4px_12px_rgba(0,0,0,0.35)]"
+      >
+        Explore
+      </button>
+    </main>
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script>
+      tsParticles.load({
+        fullScreen: { enable: true, zIndex: 0 },
+        particles: {
+          number: { value: 80 },
+          color: { value: "#ffffff" },
+          size: { value: 3 },
+          opacity: { value: 0.6 },
+          links: {
+            enable: true,
+            distance: 140,
+            color: "#ffffff",
+            opacity: 0.4,
+          },
+          move: {
+            enable: true,
+            speed: 0.8,
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "repulse" },
+          },
+          modes: {
+            repulse: { distance: 120 },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

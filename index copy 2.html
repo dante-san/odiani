@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odiani — Authentic Odia & Asian Fusion</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0b0b0b;
+        color: white;
+      }
+
+      .brand {
+        font-family: "Noto Sans Oriya", "Poppins", sans-serif;
+      }
+
+      /* PARALLAX CORE */
+      .parallax {
+        background-image: url("/bg-2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      /* MULTI-LAYER OVERLAY */
+      .cinematic {
+        background: linear-gradient(to bottom, rgba(15, 15, 15, 0.55), rgba(15, 15, 15, 0.25)),
+          radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+      }
+
+      /* SECTION BLEND */
+      .blend-bottom {
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.35s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Chrome, Edge, Safari */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #0b0b0b;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+        border-radius: 999px;
+        border: 2px solid #0b0b0b;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.25) #0b0b0b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg">
+      <div class="h-16 max-w-7xl mx-auto flex items-center justify-between px-8">
+        <div class="brand text-2xl font-bold tracking-widest uppercase">ଓଡ଼ିଆଣି.</div>
+        <nav class="flex gap-8 text-sm tracking-wide">
+          <a class="nav-link" href="#story">Story</a>
+          <a class="nav-link" href="#cuisine">Cuisine</a>
+          <a class="nav-link" href="#specials">Specials</a>
+          <a class="nav-link" href="#order">Order</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="parallax min-h-screen flex items-center blend-bottom">
+      <div class="cinematic w-full min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h1 class="text-7xl font-extrabold tracking-wide leading-tight [text-shadow:0_8px_30px_rgba(0,0,0,.7)]">
+          Pure Authentic<br />Odia Food
+        </h1>
+
+        <p class="mt-6 text-xl italic opacity-90 max-w-2xl">Rooted in tradition. Elevated with global influence.</p>
+
+        <div class="mt-10 flex gap-6">
+          <button
+            class="px-12 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/25 transition-all uppercase font-semibold"
+          >
+            Explore Menu
+          </button>
+          <button class="px-12 py-3 rounded-full bg-white text-black font-semibold hover:opacity-90 transition">
+            Order Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="relative min-h-screen bg-[#0f0f0f] flex items-center">
+      <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+        <!-- Left: Narrative -->
+        <div>
+          <h2 class="text-5xl font-bold mb-6">Our Story</h2>
+          <p class="text-lg leading-relaxed opacity-90">
+            Odiani was founded with a simple belief — Odia food deserves the same respect and consistency as any global
+            cuisine.
+            <br /><br />
+            Rooted in traditional kitchens and family recipes, we preserve the soul of Odisha while adapting to modern
+            tastes, hygiene standards, and delivery-first operations.
+            <br /><br />
+            This is not fusion for the sake of trend — it is evolution with responsibility.
+          </p>
+        </div>
+
+        <!-- Right: Values -->
+        <div class="bg-white/5 p-10 rounded-2xl backdrop-blur-lg">
+          <ul class="space-y-5 text-lg">
+            <li>• Region-specific recipes, not generic flavors</li>
+            <li>• Slow-cooked bases, prepared fresh daily</li>
+            <li>• No artificial shortcuts or frozen gravies</li>
+            <li>• Built for consistency at scale</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUISINE -->
+    <section id="cuisine" class="parallax min-h-screen flex items-center">
+      <div class="cinematic w-full min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-8 w-full">
+          <h2 class="text-5xl font-bold mb-6">Our Culinary Philosophy</h2>
+          <p class="max-w-3xl text-lg opacity-90 mb-14">
+            Odiani brings together regional depth and global technique. Each cuisine is developed independently —
+            respecting its origins while aligning with our quality standards.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-8">
+            <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md">
+              <h3 class="text-xl font-semibold mb-2">Odia Classics</h3>
+              <p class="opacity-80">Dalma, Besara, traditional tempering & rice pairings.</p>
+            </div>
+
+            <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md">
+              <h3 class="text-xl font-semibold mb-2">Chinese</h3>
+              <p class="opacity-80">Clean wok flavors, balanced sauces, controlled heat.</p>
+            </div>
+
+            <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md">
+              <h3 class="text-xl font-semibold mb-2">Indo-Chinese</h3>
+              <p class="opacity-80">Bold, street-style profiles tuned for delivery.</p>
+            </div>
+
+            <div class="bg-white/10 p-8 rounded-xl backdrop-blur-md">
+              <h3 class="text-xl font-semibold mb-2">Indo-Korean</h3>
+              <p class="opacity-80">Korean techniques adapted for Indian palates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALS -->
+    <section id="specials" class="min-h-screen bg-[#121212] flex items-center">
+      <div class="max-w-7xl mx-auto px-8 w-full">
+        <h2 class="text-5xl font-bold mb-10">Signature Dishes</h2>
+
+        <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory">
+          <div class="snap-start min-w-[280px] bg-white/5 p-8 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-2">Dalma & Rice</h3>
+            <p class="opacity-80">Authentic Odia comfort, slow-cooked lentils.</p>
+          </div>
+
+          <div class="snap-start min-w-[280px] bg-white/5 p-8 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-2">Chilli Chicken</h3>
+            <p class="opacity-80">Balanced heat, delivery-stable crunch.</p>
+          </div>
+
+          <div class="snap-start min-w-[280px] bg-white/5 p-8 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-2">Korean BBQ Bowl</h3>
+            <p class="opacity-80">Marinated proteins with rice & pickled sides.</p>
+          </div>
+
+          <div class="snap-start min-w-[280px] bg-white/5 p-8 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-2">Indo-Chinese Noodles</h3>
+            <p class="opacity-80">Street-style, sauce-forward, consistent texture.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative min-h-screen bg-black flex items-center">
+      <div class="max-w-6xl mx-auto px-8">
+        <h2 class="text-5xl font-bold mb-12">Quality & Operations</h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white/10 p-8 rounded-xl">
+            <h3 class="text-xl font-semibold mb-3">Ingredient Control</h3>
+            <p class="opacity-80">Vendor-approved sourcing and daily prep cycles.</p>
+          </div>
+
+          <div class="bg-white/10 p-8 rounded-xl">
+            <h3 class="text-xl font-semibold mb-3">Standardized Processes</h3>
+            <p class="opacity-80">Recipes documented for consistency across locations.</p>
+          </div>
+
+          <div class="bg-white/10 p-8 rounded-xl">
+            <h3 class="text-xl font-semibold mb-3">Delivery-First Design</h3>
+            <p class="opacity-80">Packaging and plating optimized for transit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order" class="parallax min-h-screen flex items-center">
+      <div class="cinematic w-full min-h-screen flex items-center justify-center text-center">
+        <div class="max-w-xl">
+          <h2 class="text-6xl font-bold mb-6">Order Seamlessly</h2>
+          <p class="text-lg opacity-90 mb-10">Available on leading platforms with direct ordering coming soon.</p>
+
+          <div class="flex gap-6 justify-center">
+            <button class="px-10 py-4 bg-white/15 rounded-xl backdrop-blur-md">Swiggy</button>
+            <button class="px-10 py-4 bg-white/15 rounded-xl backdrop-blur-md">Zomato</button>
+            <button class="px-10 py-4 bg-white text-black rounded-xl font-semibold">Direct Order</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-10 text-center opacity-70">© Odiani · Enterprise-grade Odia & Asian Fusion Brand</footer>
+  </body>
+</html>

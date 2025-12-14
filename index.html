@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odiani — Authentic Odia & Asian Fusion</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0b0b0b;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      .brand {
+        font-family: "Noto Sans Oriya", "Poppins", sans-serif;
+      }
+
+      /* PARALLAX CORE */
+      .parallax {
+        background-image: url("./bg-10.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      /* MULTI-LAYER OVERLAY */
+      .cinematic {
+        background: linear-gradient(to bottom, rgba(15, 15, 15, 0.55), rgba(15, 15, 15, 0.05)),
+          radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+      }
+
+      /* SECTION BLEND */
+      .blend-bottom {
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      }
+
+      .nav-link {
+        position: relative;
+        font-size: 1rem;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.35s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Chrome, Edge, Safari */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #0b0b0b;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+        border-radius: 999px;
+        border: 2px solid #0b0b0b;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.25) #0b0b0b;
+      }
+
+      /* 3D PHOTO STACK */
+      .photo-stack {
+        position: relative;
+        width: 100%;
+        height: 520px;
+        perspective: 1400px;
+      }
+
+      .photo-card {
+        position: absolute;
+        width: 82%;
+        height: 420px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+        transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+      }
+
+      .photo-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .photo-card:nth-child(1) {
+        z-index: 3;
+        transform: translateZ(80px) translateY(0px) rotateY(-2deg);
+        left: 0;
+        top: 50px;
+      }
+
+      .photo-card:nth-child(2) {
+        z-index: 2;
+        transform: translateZ(20px) translateY(35px) rotateY(-1deg);
+        left: 10%;
+        top: 50px;
+        opacity: 0.75;
+      }
+
+      .photo-card:nth-child(3) {
+        z-index: 1;
+        transform: translateZ(-40px) translateY(70px);
+        left: 20%;
+        top: 50px;
+        opacity: 0.5;
+      }
+
+      .photo-stack:hover .photo-card:nth-child(1) {
+        transform: translateZ(100px) translateY(-15px) rotateY(-4deg);
+      }
+
+      .photo-stack:hover .photo-card:nth-child(2) {
+        transform: translateZ(40px) translateY(25px) rotateY(-2deg);
+        opacity: 0.9;
+      }
+
+      .photo-stack:hover .photo-card:nth-child(3) {
+        transform: translateZ(-20px) translateY(60px) rotateY(-1deg);
+        opacity: 0.7;
+      }
+
+      .value-badge {
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      /* CUISINE 3D CARDS */
+      .cuisine-card {
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .cuisine-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+      }
+
+      .cuisine-card:hover::before {
+        left: 100%;
+      }
+
+      .cuisine-card:hover {
+        transform: translateY(-15px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .cuisine-card img {
+        transition: transform 0.5s ease;
+      }
+
+      .cuisine-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* ANIMATED SLIDER */
+      .slider-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider-track {
+        display: flex;
+        gap: 1.5rem;
+        transition: transform 0.5s ease;
+      }
+
+      .dish-card {
+        min-width: 320px;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transform-style: preserve-3d;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dish-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .dish-card:hover::after {
+        opacity: 1;
+      }
+
+      .dish-card:hover {
+        transform: translateY(-10px) rotateX(5deg) scale(1.03);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .dish-card img {
+        transition: all 0.5s ease;
+      }
+
+      .dish-card:hover img {
+        transform: scale(1.15) rotate(2deg);
+      }
+
+      /* QUALITY 3D CARDS */
+      .quality-card {
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+      }
+
+      .quality-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .quality-card:hover::before {
+        left: 100%;
+      }
+
+      .quality-card:hover {
+        transform: translateY(-12px) rotateX(5deg) scale(1.02);
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      /* FLOATING ANIMATION */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* ORDER BUTTONS */
+      .order-btn {
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .order-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .order-btn:hover::before {
+        opacity: 1;
+      }
+
+      .order-btn:hover {
+        transform: translateY(-5px) scale(1.08);
+        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.15);
+      }
+
+      .order-btn-primary {
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .order-btn-primary:hover {
+        transform: translateY(-5px) scale(1.08);
+        box-shadow: 0 20px 50px rgba(255, 255, 255, 0.4);
+      }
+
+      /* SMOOTH SCROLL */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* SLIDER CONTROLS */
+      .slider-btn {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .slider-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+
+      /* FOOTER LINKS */
+      .footer-link {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: white;
+        transition: width 0.3s ease;
+      }
+
+      .footer-link:hover::after {
+        width: 100%;
+      }
+
+      .footer-link:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <!-- <header class="fixed top-0 w-full z-50" id="navbar">
+      <div class="h-16 max-w-7xl mx-auto flex items-center justify-between px-8">
+        <div class="brand text-2xl font-bold tracking-widest uppercase">ଓଡ଼ିଆଣି.</div>
+        <nav class="flex gap-8 text-sm tracking-wide">
+          <a class="nav-link font-base" href="#story">Story</a>
+          <a class="nav-link font-base" href="#cuisine">Cuisine</a>
+          <a class="nav-link font-base" href="#specials">Specials</a>
+          <a class="nav-link font-base" href="#order">Order</a>
+        </nav>
+      </div>
+    </header> -->
+
+    <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+      <div class="h-16 max-w-7xl mx-auto flex items-center justify-between px-8">
+        <div class="brand text-2xl font-bold tracking-widest uppercase">ଓଡ଼ିଆଣି.</div>
+        <nav class="flex gap-8 text-sm tracking-wide">
+          <a class="nav-link font-base" href="#story">Story</a>
+          <a class="nav-link font-base" href="#cuisine">Cuisine</a>
+          <a class="nav-link font-base" href="#specials">Specials</a>
+          <a class="nav-link font-base" href="#order">Order</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="parallax min-h-screen flex items-center blend-bottom">
+      <div class="cinematic w-full min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h1 class="text-7xl font-extrabold tracking-wide leading-tight [text-shadow:0_8px_30px_rgba(0,0,0,.7)]">
+          Pure Authentic<br />Odia Food
+        </h1>
+
+        <p class="mt-6 text-xl italic opacity-90 max-w-2xl">Rooted in tradition. Elevated with global influence.</p>
+
+        <div class="mt-10 flex gap-6">
+          <button
+            class="px-12 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/25 transition-all uppercase font-semibold cursor-pointer"
+          >
+            Explore Menu
+          </button>
+          <button
+            class="px-12 py-3 rounded-full bg-white text-black font-semibold hover:opacity-90 transition cursor-pointer"
+          >
+            Order Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="relative min-h-screen bg-[#0f0f0f] flex items-center py-20">
+      <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
+        <!-- Left: Narrative -->
+        <div>
+          <h2 class="text-5xl font-bold mb-6 tracking-tight">Our Story</h2>
+          <p class="text-lg leading-relaxed opacity-90">
+            Odiani was founded with a simple belief — Odia food deserves the same respect and consistency as any global
+            cuisine.
+            <br /><br />
+            Rooted in traditional kitchens and family recipes, we preserve the soul of Odisha while adapting to modern
+            tastes, hygiene standards, and delivery-first operations.
+            <br /><br />
+            This is not fusion for the sake of trend — it is evolution with responsibility.
+          </p>
+        </div>
+
+        <!-- Right: 3D Photo Stack -->
+        <div class="relative">
+          <div class="photo-stack">
+            <!-- Photo 1 (Front) -->
+            <div class="photo-card">
+              <img
+                src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop"
+                alt="Traditional Odia cooking"
+              />
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                <div class="value-badge inline-block px-5 py-2.5 rounded-full text-sm font-medium">
+                  Region-specific recipes, not generic flavors
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 2 (Middle) -->
+            <div class="photo-card">
+              <img
+                src="https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&h=600&fit=crop"
+                alt="Fresh ingredients"
+              />
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                <div class="value-badge inline-block px-5 py-2.5 rounded-full text-sm font-medium">
+                  Slow-cooked bases, prepared fresh daily
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 3 (Back) -->
+            <div class="photo-card">
+              <img
+                src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop"
+                alt="Quality kitchen"
+              />
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                <div class="value-badge inline-block px-5 py-2.5 rounded-full text-sm font-medium">
+                  No artificial shortcuts or frozen gravies
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUISINE -->
+    <section id="cuisine" class="parallax min-h-screen flex items-center">
+      <div class="cinematic w-full min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-8 w-full">
+          <h2 class="text-5xl font-bold mb-6 tracking-tight">Our Culinary Philosophy</h2>
+          <p class="max-w-3xl text-lg opacity-90 mb-14">
+            Odiani brings together regional depth and global technique. Each cuisine is developed independently —
+            respecting its origins while aligning with our quality standards.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-8">
+            <div class="cuisine-card bg-white/10 rounded-xl backdrop-blur-md overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=300&fit=crop"
+                  alt="Odia Classics"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Odia Classics</h3>
+                <p class="opacity-80">Dalma, Besara, traditional tempering & rice pairings.</p>
+              </div>
+            </div>
+
+            <div class="cuisine-card bg-white/10 rounded-xl backdrop-blur-md overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=400&h=300&fit=crop"
+                  alt="Chinese"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Chinese</h3>
+                <p class="opacity-80">Clean wok flavors, balanced sauces, controlled heat.</p>
+              </div>
+            </div>
+
+            <div class="cuisine-card bg-white/10 rounded-xl backdrop-blur-md overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop"
+                  alt="Indo-Chinese"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Indo-Chinese</h3>
+                <p class="opacity-80">Bold, street-style profiles tuned for delivery.</p>
+              </div>
+            </div>
+
+            <div class="cuisine-card bg-white/10 rounded-xl backdrop-blur-md overflow-hidden">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400&h=300&fit=crop"
+                  alt="Indo-Korean"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Indo-Korean</h3>
+                <p class="opacity-80">Korean techniques adapted for Indian palates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALS -->
+    <section id="specials" class="min-h-screen bg-[#121212] flex items-center py-20">
+      <div class="max-w-7xl mx-auto px-8 w-full">
+        <div class="flex items-center justify-between mb-10">
+          <h2 class="text-5xl font-bold tracking-tight">Signature Dishes</h2>
+          <div class="flex gap-4">
+            <button onclick="slideLeft()" class="slider-btn p-3 rounded-full">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button onclick="slideRight()" class="slider-btn p-3 rounded-full">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="slider-container">
+          <div class="slider-track flex gap-6" id="sliderTrack">
+            <div class="dish-card bg-white/5 rounded-2xl overflow-hidden">
+              <div class="h-56 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop"
+                  alt="Dalma & Rice"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Dalma & Rice</h3>
+                <p class="opacity-80">Authentic Odia comfort, slow-cooked lentils with seasonal vegetables.</p>
+              </div>
+            </div>
+
+            <div class="dish-card bg-white/5 rounded-2xl overflow-hidden">
+              <div class="h-56 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=300&fit=crop"
+                  alt="Chilli Chicken"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Chilli Chicken</h3>
+                <p class="opacity-80">Balanced heat, delivery-stable crunch with bold flavors.</p>
+              </div>
+            </div>
+
+            <div class="dish-card bg-white/5 rounded-2xl overflow-hidden">
+              <div class="h-56 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop"
+                  alt="Korean BBQ Bowl"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Korean BBQ Bowl</h3>
+                <p class="opacity-80">Marinated proteins with rice & pickled sides, fusion perfection.</p>
+              </div>
+            </div>
+
+            <div class="dish-card bg-white/5 rounded-2xl overflow-hidden">
+              <div class="h-56 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop"
+                  alt="Indo-Chinese Noodles"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Indo-Chinese Noodles</h3>
+                <p class="opacity-80">Street-style, sauce-forward, consistent texture every time.</p>
+              </div>
+            </div>
+
+            <div class="dish-card bg-white/5 rounded-2xl overflow-hidden">
+              <div class="h-56 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop"
+                  alt="Besara Curry"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Besara Curry</h3>
+                <p class="opacity-80">Mustard-based gravy with authentic Odia spices and vegetables.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUALITY -->
+    <section class="relative min-h-screen bg-black flex items-center py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <h2 class="text-5xl font-bold mb-12 tracking-tight">Quality & Operations</h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="quality-card bg-white/10 p-10 rounded-xl">
+            <div class="text-5xl mb-6 float-animation">🌾</div>
+            <h3 class="text-2xl font-semibold mb-3">Ingredient Control</h3>
+            <p class="opacity-80 leading-relaxed">
+              Vendor-approved sourcing and daily prep cycles ensure maximum freshness and authentic flavors in every
+              dish.
+            </p>
+          </div>
+
+          <div class="quality-card bg-white/10 p-10 rounded-xl">
+            <div class="text-5xl mb-6 float-animation" style="animation-delay: 0.2s">📋</div>
+            <h3 class="text-2xl font-semibold mb-3">Standardized Processes</h3>
+            <p class="opacity-80 leading-relaxed">
+              Recipes documented for consistency across locations, maintaining the same taste and quality everywhere.
+            </p>
+          </div>
+
+          <div class="quality-card bg-white/10 p-10 rounded-xl">
+            <div class="text-5xl mb-6 float-animation" style="animation-delay: 0.4s">📦</div>
+            <h3 class="text-2xl font-semibold mb-3">Delivery-First Design</h3>
+            <p class="opacity-80 leading-relaxed">
+              Packaging and plating optimized for transit, ensuring your meal arrives as fresh as it left our kitchen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order" class="parallax min-h-screen flex items-center">
+      <div class="cinematic w-full min-h-screen flex items-center justify-center text-center">
+        <div class="max-w-full">
+          <h2 class="text-6xl font-bold mb-6 tracking-tight">Order Seamlessly</h2>
+          <p class="text-lg opacity-90 mb-10">Available on leading platforms with direct ordering coming soon.</p>
+
+          <div class="flex gap-6 justify-center">
+            <div class="flex flex-wrap justify-center gap-8">
+              <!-- Swiggy -->
+              <a
+                href="#"
+                class="group flex flex-col items-center gap-4 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:-translate-y-1"
+              >
+                <div class="h-40 w-40 rounded-full overflow-hidden border border-gray-200">
+                  <img
+                    src="./swiggy.jpg"
+                    alt="Swiggy"
+                    class="h-full w-full object-cover scale-250 object-center transition-transform duration-300 group-hover:scale-275"
+                  />
+                </div>
+                <span class="font-semibold tracking-wide">Order on Swiggy</span>
+              </a>
+
+              <!-- Zomato -->
+              <a
+                href="#"
+                class="group flex flex-col items-center gap-4 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:-translate-y-1"
+              >
+                <div class="h-40 w-40 rounded-full overflow-hidden border border-gray-200">
+                  <img
+                    src="./zomato.avif"
+                    alt="Zomato"
+                    class="h-full w-full object-cover scale-125 object-center transition-transform duration-300 group-hover:scale-150"
+                  />
+                </div>
+                <span class="font-semibold tracking-wide">Order on Zomato</span>
+              </a>
+
+              <!-- Direct -->
+              <a
+                href="#"
+                class="group flex flex-col items-center gap-4 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:-translate-y-1"
+              >
+                <div class="h-40 w-40 rounded-full overflow-hidden border border-gray-200">
+                  <img
+                    src="./independent.jpg"
+                    alt="Direct Order"
+                    class="h-full w-full object-cover scale-125 object-center transition-transform duration-300 group-hover:scale-150"
+                  />
+                </div>
+                <span class="font-semibold tracking-wide">Direct Order</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a0a0a] border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-8 py-16">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+          <!-- Brand -->
+          <div class="md:col-span-1">
+            <div class="brand text-3xl font-bold tracking-widest uppercase mb-4">ଓଡ଼ିଆଣି.</div>
+            <p class="opacity-70 text-sm leading-relaxed">
+              Enterprise-grade Odia & Asian Fusion Brand bringing authentic flavors to modern tables.
+            </p>
+            <p class="text-sm leading-relaxed opacity-90">☎ +91-9658567890</p>
+            <p class="text-sm leading-relaxed opacity-90">📧 info@arkatech.com</p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#story" class="footer-link opacity-70 text-sm">Our Story</a></li>
+              <li><a href="#cuisine" class="footer-link opacity-70 text-sm">Cuisine</a></li>
+              <li><a href="#specials" class="footer-link opacity-70 text-sm">Signature Dishes</a></li>
+              <li><a href="#order" class="footer-link opacity-70 text-sm">Order Now</a></li>
+            </ul>
+          </div>
+
+          <!-- Menu -->
+          <div>
+            <h3 class="font-semibold text-lg mb-4">Our Menu</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="footer-link opacity-70 text-sm">Odia Classics</a></li>
+              <li><a href="#" class="footer-link opacity-70 text-sm">Chinese Cuisine</a></li>
+              <li><a href="#" class="footer-link opacity-70 text-sm">Indian Classics</a></li>
+              <li><a href="#" class="footer-link opacity-70 text-sm">Fusion Food</a></li>
+            </ul>
+          </div>
+          <!-- Map -->
+          <div>
+            <h3 class="font-semibold text-lg mb-4">Find Us</h3>
+            <div class="w-full h-36 rounded-xl overflow-hidden border border-white/10">
+              <iframe
+                class="w-full h-full"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Bhubaneswar,Odisha&output=embed"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const navbar = document.getElementById("navbar");
+      const triggers = document.querySelectorAll("section");
+      let flag = false;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const anyVisible = entries.some((entry) => entry.isIntersecting);
+
+          if (anyVisible && flag) {
+            navbar.style.background = "rgba(0, 0, 0, 0.7)";
+            navbar.style.backdropFilter = "blur(16px)";
+          } else {
+            navbar.style.background = "transparent";
+            navbar.style.backdropFilter = "none";
+            flag = true;
+          }
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "-60px 0px 0px 0px",
+        }
+      );
+
+      triggers.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
