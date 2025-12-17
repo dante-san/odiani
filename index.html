@@ -15,6 +15,7 @@
 
     <!-- Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
     <style>
       body {
@@ -411,6 +412,8 @@
 
         <div class="mt-10 flex gap-6">
           <button
+            command="show-modal"
+            commandfor="dialog"
             class="px-12 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/25 transition-all uppercase font-semibold cursor-pointer"
           >
             Explore Menu
@@ -794,8 +797,212 @@
             </div>
           </div>
         </div>
+        <span class="font-bold w-full text-center block"
+          >Made with 💗 by
+          <a href="https://github.com/dante-san" target="_blank" class="nav-link">Laxmidhar Maharana</a></span
+        >
       </div>
     </footer>
+    <el-dialog>
+      <dialog
+        id="dialog"
+        aria-labelledby="dialog-title"
+        class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent text-white"
+      >
+        <el-dialog-backdrop
+          class="fixed inset-0 bg-black/60 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
+        ></el-dialog-backdrop>
+
+        <div tabindex="0" class="flex min-h-full items-center justify-center p-4 text-center focus:outline-none">
+          <el-dialog-panel
+            class="relative transform overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/10 text-left shadow-2xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in w-full max-w-4xl data-closed:scale-95 max-h-[90vh] overflow-y-auto"
+          >
+            <!-- Dialog Header -->
+            <div class="sticky top-0 bg-[#0a0a0a] border-b border-white/10 px-8 py-6 z-10">
+              <div class="text-center">
+                <h3 id="dialog-title" class="text-4xl font-bold tracking-wide uppercase mb-2">Our Menu</h3>
+                <div class="w-24 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent mx-auto"></div>
+              </div>
+            </div>
+
+            <!-- Menu Content -->
+            <div class="px-8 py-6 space-y-12">
+              <!-- Odia Classics -->
+              <div>
+                <h4 class="text-2xl font-bold mb-6 text-center uppercase tracking-wider">Odia Classics</h4>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Dalma</h5>
+                      <p class="text-white/60 text-sm">
+                        Traditional lentil and vegetable stew with authentic Odia spices
+                      </p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹299</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Chingudi Jhola</h5>
+                      <p class="text-white/60 text-sm">Coastal prawn curry with coconut and aromatic spices</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹549</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Pakhala Bhata</h5>
+                      <p class="text-white/60 text-sm">
+                        Fermented rice with traditional accompaniments and seasonal vegetables
+                      </p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹249</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Macha Besara</h5>
+                      <p class="text-white/60 text-sm">Fish cooked in mustard paste with traditional Odia herbs</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹449</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chinese Cuisine -->
+              <div>
+                <h4 class="text-2xl font-bold mb-6 text-center uppercase tracking-wider">Chinese Cuisine</h4>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Szechuan Chicken</h5>
+                      <p class="text-white/60 text-sm">Spicy stir-fried chicken with Szechuan peppercorns and chili</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹399</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Hakka Noodles</h5>
+                      <p class="text-white/60 text-sm">Wok-tossed noodles with fresh vegetables and soy sauce</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹329</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Manchurian Dry</h5>
+                      <p class="text-white/60 text-sm">
+                        Crispy vegetable or chicken balls tossed in tangy Manchurian sauce
+                      </p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹349</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Dim Sum Platter</h5>
+                      <p class="text-white/60 text-sm">Assorted steamed dumplings with dipping sauces</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹499</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Indian Classics -->
+              <div>
+                <h4 class="text-2xl font-bold mb-6 text-center uppercase tracking-wider">Indian Classics</h4>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Butter Chicken</h5>
+                      <p class="text-white/60 text-sm">Tender chicken in rich tomato and cream gravy</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹429</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Paneer Tikka Masala</h5>
+                      <p class="text-white/60 text-sm">Grilled cottage cheese in spiced masala gravy</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹379</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Biryani (Chicken/Mutton)</h5>
+                      <p class="text-white/60 text-sm">Fragrant basmati rice layered with marinated meat and spices</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹449</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Dal Makhani</h5>
+                      <p class="text-white/60 text-sm">Slow-cooked black lentils with butter and cream</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹299</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fusion Specials -->
+              <div>
+                <h4 class="text-2xl font-bold mb-6 text-center uppercase tracking-wider">Fusion Specials</h4>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Chingudi Fried Rice</h5>
+                      <p class="text-white/60 text-sm">Coastal prawns meet Asian fried rice with Odia spice blend</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹499</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Dalma Spring Rolls</h5>
+                      <p class="text-white/60 text-sm">Traditional dalma filling in crispy spring roll wrapper</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹349</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Tandoori Chingudi</h5>
+                      <p class="text-white/60 text-sm">Odia prawns with North Indian tandoori marinade</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹599</span>
+                  </div>
+
+                  <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                    <div class="flex-1">
+                      <h5 class="text-lg font-semibold mb-1">Paneer Chilli Besara</h5>
+                      <p class="text-white/60 text-sm">Cottage cheese in mustard-chilli fusion sauce</p>
+                    </div>
+                    <span class="text-xl font-bold ml-4">₹429</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div
+              class="sticky bottom-0 bg-white/5 backdrop-blur-sm px-8 py-6 flex gap-4 justify-center border-t border-white/10"
+            >
+              <button
+                type="button"
+                command="close"
+                commandfor="dialog"
+                class="px-8 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-all duration-200 uppercase tracking-wide text-sm"
+              >
+                Close Menu
+              </button>
+            </div>
+          </el-dialog-panel>
+        </div>
+      </dialog>
+    </el-dialog>
     <script>
       const navbar = document.getElementById("navbar");
       const triggers = document.querySelectorAll("section");
